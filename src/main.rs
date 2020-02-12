@@ -8,10 +8,12 @@ Fast file hasher in Rust using MeowHash.
 
 use std::fs::File;
 use std::fs::OpenOptions;
-use std::io::BufReader;
+use std::io::{BufReader, Empty};
 use std::io::prelude::*;
 use digest::*;
 use meowhash::*;
+use std::io;
+use std::io::prelude::*;
 
 fn main() {
     println!("Hello, world!");
@@ -32,4 +34,6 @@ fn main() {
     hasher.input(&buffer);
 
     let result = hasher.result();
+
+    println!("{}", buf_reader.len());
 }
