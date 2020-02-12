@@ -28,12 +28,18 @@ fn main() {
 
     let file = OpenOptions::new().read(true).open(".gitignore").unwrap();
     let mut buf_reader = BufReader::new(file);
-    
-    let mut buffer = Vec::with_capacity(1024 * 1024);
-    buf_reader.read(&mut buffer).unwrap();
-    hasher.input(&buffer);
 
+
+    let buf_size = 1024 * 1024;
+    let mut buffer = Vec::with_capacity(buf_size);
+    loop {
+    	buf_reader.read(&mut buffer).unwrap();
+    	hasher.input(&buffer);
+    	if buf_reader.buffer().len() <= buf_size {
+    		break;
+    	}
+	}
     let result = hasher.result();
 
-    println!("{}", buf_reader.len());
+    println!("{}", hex::encode(result));
 }
