@@ -18,17 +18,18 @@ fn main() {
 
     let mut hasher = MeowHasher::new();
 
-    let data = vec![1, 2, 3, 4, 5];
-    hasher.input(&data);
+    //let data = vec![1, 2, 3, 4, 5];
+    //hasher.input(&data);
 
-	let result = hasher.result();
-
-    println!("{:?}", result);
-
-    println!("{}", hex::encode(result));
+    //println!("{:?}", result);
+    //println!("{}", hex::encode(result));
 
     let file = OpenOptions::new().read(true).open(".gitignore").unwrap();
     let mut buf_reader = BufReader::new(file);
+    
     let mut buffer = Vec::with_capacity(1024 * 1024);
     buf_reader.read(&mut buffer).unwrap();
+    hasher.input(&buffer);
+
+    let result = hasher.result();
 }
