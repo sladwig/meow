@@ -1,5 +1,5 @@
 /*
-pbz-hash
+meow
 
 Fast file hasher in Rust using MeowHash.
 */
@@ -18,8 +18,8 @@ fn main() {
 
     // Show help screen and exit if file is not given
     if args.len() < 2 {
-        println!("pbz-hash - Hash large files efficiently.");
-        println!("    Usage: pbz-hash <filename>");
+        println!("meow - Hash large files efficiently.");
+        println!("       Usage: meow <filename>");
         std::process::exit(0);
     }
 
